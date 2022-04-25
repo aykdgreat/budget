@@ -41,7 +41,7 @@ if (isset($_POST['add-transaction'])) {
     <div class="logo">
       My<span class="white">Budget</span>er<small class="white">.app</small>
     </div>
-    <div class="display">
+    <!-- <div class="display">
       <div class="income" id="inc-display">
         <h3>Income</h3>
         <p>
@@ -60,7 +60,7 @@ if (isset($_POST['add-transaction'])) {
           # 3000
         </p>
       </div>
-    </div>
+    </div> -->
     <!--<input type="date" name="" id="" value="y" @blur="getValue($event)" />-->
     <div class="body">
       <div class="toggle">
@@ -174,14 +174,14 @@ if (isset($_POST['add-transaction'])) {
     <!-- else -->
     <!-- <ul class="list">No income recorded, add below!</ul> -->
     
-    <div class="form">
+    <!-- <div class="form">
       <form method="post">
         <div class="error"><?php echo $error; ?>
         <input type="text" name="inc_desc" placeholder="Description" class="desc-input" value="<?php echo $inc_desc; ?>">
         <input type="number" name="inc_amount" placeholder="Amount" class="amt-input" value="<?php echo $inc_amount; ?>">
         <input type="submit" class="add-inc" name="add_inc" value="Add Income">
       </form>
-    </div>
+    </div> -->
   </div>
 </div>
 </div>
