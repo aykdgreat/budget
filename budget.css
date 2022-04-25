@@ -57,6 +57,10 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
   font-family: Britannic, sans-serif;
 }
 
+.card {
+  
+}
+
 .income, .balance, .expense {
   /* display: inline-block; */
   border-bottom: 1px solid #486EE0;
@@ -140,7 +144,7 @@ li {
   padding: 5px 0;
 }
 
-.desc {
+.title {
   float: left;
   width: 90%;
 }
@@ -209,7 +213,7 @@ li {
 }
 
 .input-form {
-  max-width: 400px;
+  max-width: 100%;
   background-color: #fff;
   padding: 20px;
 }
@@ -229,7 +233,7 @@ border-spacing: 10px;
   margin-bottom: 5px;
 }
 
-.desc-input, .amt-input {
+.title-input, .amt-input {
   background-color: #eee;
   padding: 10px;
   margin-bottom: 15px;
@@ -239,7 +243,7 @@ border-spacing: 10px;
 }
 
 /* 
-.desc-input {
+.title-input {
   border-left: 3px solid #1f2f61;
 }
 
@@ -247,7 +251,7 @@ border-spacing: 10px;
   border-left: 3px solid #1f2f61;
 } */
 
-.desc-input:focus, .amt-input:focus {
+.title-input:focus, .amt-input:focus {
   outline: 1px solid #1f2f61
 }
 
