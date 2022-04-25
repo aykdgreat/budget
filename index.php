@@ -5,12 +5,16 @@ $error = $exp_amount = $exp_desc = $inc_desc = $inc_amount = "";
 if (isset($_POST['add-transaction'])) {
     $tr_desc = $_POST['tr-desc'];
     $tr_amount = $_POST['tr-amount'];
+    $tr_date = $_POST['tr-date'];
     $tr_type = $_POST['tr-type'];
     $tr_option = $_POST['tr-payment-option'];
 
-    if (!(empty($tr_desc) && empty($tr_amount) && empty($tr_type) && empty($tr_option))) {
+    if (!(empty($tr_desc) && empty($tr_amount) && empty($tr_date) && empty($tr_type) && empty($tr_option))) {
         echo $tr_desc;
         echo $tr_amount;
+        echo $tr_date;
+        echo $tr_type;
+        echo $tr_option;
     } else {
         $error = "Add description and amount";
     }
@@ -116,6 +120,15 @@ if (isset($_POST['add-transaction'])) {
               </td>
               </td>
             </tr>
+            <tr>
+              <td class="m-right">
+                <label for="tr-type">Date <span class="error">*</span></label>
+              </td>
+              <td>
+                <input type="date" name="tr-date" class="amt-input">
+              </td>
+              </td>
+            </tr>
           </tr>
           <tr>
             <td class="m-right">
@@ -129,7 +142,7 @@ if (isset($_POST['add-transaction'])) {
         </tr>
         <tr>
           <td colspan="2">
-            <input type="submit" class="add-exp" name="add-transaction" value="Add Expense">
+            <input type="submit" class="add-exp" name="add-transaction" value="Add Transaction">
           </td>
         </tr>
           </table>
