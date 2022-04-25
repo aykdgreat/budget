@@ -1,0 +1,281 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Gill Sans MT", sans-serif;
+  font-size: 18px;
+  background-color: #e4e9f1;
+  position: relative;
+}
+
+.container {
+  background-color: #e4e9f1;
+  height: 100%;
+  position: relative;
+}
+
+.container > div:not(div.logo) {
+    transition: padding 2s;
+  }
+
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.logo {
+  text-align: center;
+  font-weight: 600;
+  font-size: 60px;
+  /*background-color: #ff7373;*/
+  background-color: #1f2f61;
+  padding: 10px 50px;
+  font-family: Poppins,Helvetica;
+  color: #486EE0;
+}
+
+.white {
+  color: #fff;
+}
+
+.logo small {
+  font-size: 15px;
+}
+
+.display {
+  margin: 15px 20px;
+  font-family: Britannic, sans-serif;
+}
+
+.income, .balance, .expense {
+  /* display: inline-block; */
+  border-bottom: 1px solid #486EE0;
+  border-top: 1px solid #486EE0;
+  width: 33%;
+  float: left;
+  padding: 10px;
+  margin: 25px auto;
+  text-align: center;
+  line-height: 2em;
+}
+
+.hide {
+  cursor: pointer;
+}
+
+.balance {
+  border: 1px solid #486EE0;
+  margin: 10px 0;
+}
+
+.income p {
+  color: #1add7b;
+  font-size: 16px;
+}
+
+.expense p {
+  font-size: 16px;
+  color: #cc1212;
+}
+
+.balance h3 {
+	font-size: 23px;
+}
+
+.balance p {
+  margin-top: 25px;
+  font-size: 25px;
+  color: #334FA1;
+}
+
+.body {
+  clear: both;
+  padding: 0 25px;
+}
+
+.toggle div {
+  /* display: inline-block; */
+  width: 33%;
+  float: left;
+  text-align: center;
+  color: #1f2f61;
+  font-weight: bold;
+  padding: 10px 0;
+}
+
+.hide {
+  opacity: .6;
+}
+
+.inactive {
+  display: none;
+}
+
+.inc-list, .exp-list, .all-list {
+  clear: left;
+  height: 330px;
+  /*height: 100vh;*/
+  position: relative;
+}
+
+.list {
+  /*height: 300px;*/
+  height: 80%;
+  width: 100%;
+  overflow-x: auto;
+}
+
+li {
+  position: relative;
+  padding: 5px 0;
+}
+
+.desc {
+  float: left;
+  width: 90%;
+}
+
+.amount {
+  /* font-size: 18px; */
+  padding-right: 10px;
+  font-family: "Britannic", sans-serif;
+}
+
+.date {
+  color: #999;
+  font-style: italic;
+  font-weight: thin;
+  font-size: 13px;
+  vertical-align: 2px;
+}
+
+.right {
+  float: right;
+}
+
+.edit {
+  width: 25px;
+  position: absolute;
+  bottom: 3%;
+  right: 30px;
+  color: #1f2f61;
+  font-size: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.delete {
+  width: 25px;
+  position: absolute;
+  font-size: 20px;
+  bottom: 3%;
+  right: 5px;
+  color: #1f2f61;
+  cursor: pointer;
+}
+
+.form {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-size: 16px;
+  background-color: rgba(0, 0, 0, .8);
+  padding: 50px;
+}
+
+.close-form {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 30px;
+  background-color: #aaa;
+}
+
+.input-form {
+  max-width: 400px;
+  background-color: #fff;
+  padding: 20px;
+}
+
+.form table {
+border-collapse: collapse;
+border-spacing: 10px;
+}
+
+.form table td.m-right {
+  padding-right: 10px;
+}
+
+.error {
+  color: red;
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.desc-input, .amt-input {
+  background-color: #eee;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  width: 100%;
+  border-bottom: 3px solid #1f2f61;
+}
+
+/* 
+.desc-input {
+  border-left: 3px solid #1f2f61;
+}
+
+.amt-input {
+  border-left: 3px solid #1f2f61;
+} */
+
+.desc-input:focus, .amt-input:focus {
+  outline: 1px solid #1f2f61
+}
+
+.add-exp, .add-inc {
+  width: 100%;
+  margin: 5px 0;
+  padding: 10px;
+  text-transform: uppercase;
+  background-color: #1f2f61;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  font-family: Britannic, sans-serif;
+}
+
+.clear {
+  clear: both;
+}
+
+@media (min-width: 720px) {
+	.container > div:not(div.logo) {
+		padding: 0 250px;
+    transition: padding 4s;
+	}
+
+	.logo {
+		padding: 10px 50px;
+		font-size: 60px;
+	}
+}
