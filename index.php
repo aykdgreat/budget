@@ -37,10 +37,8 @@ if (isset($_POST['add-transaction'])) {
   <link rel="stylesheet" href="css/line-awesome.css" type="text/css" />
   <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://www.dafontfree.net/embed/YnJpdGFubmljLWJvbGQtcmVndWxhciZkYXRhLzEzL2IvNjQ1MzAvQlJJVEFOSUMuVFRG" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
@@ -93,13 +91,8 @@ if (isset($_POST['add-transaction'])) {
 
         <div class="filter">
           <form method="get" name="history" class="card-group-inner-grid">
-            <!-- <table> -->
               <div class="hundred">
-                <!-- <tr> -->
-                  <!-- <td> -->
                     <label for="month">Month: </label>
-                  <!-- </td> -->
-                  <!-- <td>/ -->
                     <select name="month" class="input-field select">
                       <option value="January">January</option>
                       <option value="February">February</option>
@@ -114,23 +107,14 @@ if (isset($_POST['add-transaction'])) {
                       <option value="November">November</option>
                       <option value="December">December</option>
                     </select>
-                  <!-- </td> -->
               </div>
-              <!-- </tr> -->
-              <!-- <tr> -->
                 <div class="hundred">
-                <!-- <td> -->
                   <label for="order">Order: </label>
-                <!-- </td> -->
-                <!-- <td> -->
                   <select name="order" class="input-field select">
                    <option value="ASC">Ascending</option>
                    <option value="DESC">Descending</option>
                   </select>
-                <!-- </td> -->
                 </div>
-              <!-- </tr> -->
-            <!-- </table> -->
           </form>
         </div>
 
@@ -243,22 +227,10 @@ if (isset($_POST['add-transaction'])) {
       <!-- for loop-->
       <div class="inc-list inactive">
         <ul class="list">
-          <!-- if income -->
-          <li>
-            <div><span class="title">li.desc</span><span class="amount">## 4,000</span><span class="date">li.date</span><span class="edit right"> <i class="las la-edit"></i></span> <span class="delete right"> <i class="las la-trash"></i></span></div>
+          <li class="card-small">
+            <!-- <div><span class="title">li.desc</span><span class="amount">## 4,000</span><span class="date">li.date</span><span class="edit right"> <i class="las la-edit"></i></span> <span class="delete right"> <i class="las la-trash"></i></span></div> -->
           </li>
         </ul>
-        <!-- else -->
-        <!-- <ul class="list">No income recorded, add below!</ul> -->
-
-        <!-- <div class="form">
-      <form method="post">
-        <div class="error"><?php echo $error; ?>
-        <input type="text" name="inc_desc" placeholder="Description" class="input-field" value="<?php echo $inc_desc; ?>">
-        <input type="number" name="inc_amount" placeholder="Amount" class="input-field" value="<?php echo $inc_amount; ?>">
-        <input type="submit" class="add-inc" name="add_inc" value="Add Income">
-      </form>
-    </div> -->
       </div>
     </div>
     <div class="form" id="modal">

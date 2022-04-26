@@ -80,3 +80,9 @@ function openModal(event){
 function closeModal(event){
  modal.style.display = "none"
 }
+document.addEventListener("dblclick", function toggleModalClose(e) {
+  console.log(e.target.className)
+  if(e.target.className == 'form') {
+    closeModal()
+  }
+})
