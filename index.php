@@ -80,11 +80,17 @@ if (isset($_POST['add-transaction'])) {
           <form method="get" name="history">
             <label for="month">Select Month: </label><select name="month" class="input-field select">
               <option value="January">January</option>
-              <option value="January">January</option>
-              <option value="January">January</option>
-              <option value="January">January</option>
-              <option value="January">January</option>
-              <option value="January">January</option>
+              <option value="February">February</option>
+              <option value="March">March</option>
+              <option value="April">April</option>
+              <option value="May">May</option>
+              <option value="June">June</option>
+              <option value="July">July</option>
+              <option value="August">August</option>
+              <option value="September">September</option>
+              <option value="October">October</option>
+              <option value="November">November</option>
+              <option value="December">December</option>
             </select></form>
         </div>
 
@@ -93,7 +99,7 @@ if (isset($_POST['add-transaction'])) {
           <ul class="list">
             <li class="card-small clearfix">
               <div>
-                <span class="title">1. li.title <i class="las la-hashtag"></i></span>
+                <span class="title">1. So what if this happens to pass its boundary <i class="las la-hashtag"></i></span>
                 <span class="amount"># 4,000</span>
               </div>
             </li>
