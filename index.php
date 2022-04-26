@@ -77,7 +77,7 @@ if (isset($_POST['add-transaction'])) {
         </div>
       </div>
 
-      <div class="hist-list active">
+      <div class="hist-list inactive">
         <div class="card-group-inner-grid">
           <div class="card inc">
             <span>Income: </span>
@@ -170,7 +170,7 @@ if (isset($_POST['add-transaction'])) {
         <?php endif; ?>
       </div>
 
-      <div class="recent-list inactive">
+      <div class="recent-list active">
         <span class="date">Today - <?php echo date("Y-m-d", strtotime("today")); ?></span>
         <?php if (!empty($true_today)) : ?>
           <ul class="list">
@@ -233,7 +233,7 @@ if (isset($_POST['add-transaction'])) {
     </div>
     <div class="form" id="modal">
       <div class="close-modal" onclick="closeModal()">&times;</div>
-      <form method="post" ondblclick="closeModal()" class="input-form" onsubmit="closeModal()" autocomplete="off">
+      <form method="post" class="input-form" onsubmit="closeModal()" autocomplete="off">
         <h2 style="text-align: center; margin-bottom:5px;">New Transaction</h1>
           <div class="error"><?php echo $error . "<br>"; ?></div>
           <table>
