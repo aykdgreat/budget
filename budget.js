@@ -1,63 +1,51 @@
-let incDisplay = document.querySelector("#inc-display p");
-let balDisplay = document.querySelector("#bal-display p");
-let expDisplay = document.querySelector("#exp-display p");
-
-let expTab = document.querySelector(".exp-tab");
-let allTab = document.querySelector(".all-tab");
+let histTab = document.querySelector(".hist-tab");
+let recentTab = document.querySelector(".recent-tab");
 let incTab = document.querySelector(".inc-tab");
 
-let expList = document.querySelector(".exp-list .list");
+let histList = document.querySelector(".hist-list .list");
 let incList = document.querySelector(".inc-list .list");
-let allList = document.querySelector(".all-list .list");
+let recentList = document.querySelector(".recent-list .list");
 
-let expenses = document.querySelector(".exp-list");
+let history = document.querySelector(".hist-list");
 let income = document.querySelector(".inc-list");
-let all = document.querySelector(".all-list");
-
-let incomeDesc = document.querySelector("#inc-desc");
-let incomeAmt = document.querySelector("#inc-amount");
-let addInc = document.querySelector("#add-inc");
-
-let expenseDesc = document.querySelector("#exp-desc");
-let expenseAmt = document.querySelector("#exp-amount");
-let addExp = document.querySelector("#add-exp");
+let recent = document.querySelector(".recent-list");
 
 let modal = document.querySelector("#modal");
 
-expTab.addEventListener("click", function showOthers(){
-  allTab.classList.remove("active");
+histTab.addEventListener("click", function showOthers(){
+  recentTab.classList.remove("active");
   incTab.classList.remove("active");
-  allTab.classList.add("hide");
+  recentTab.classList.add("hide");
   incTab.classList.add("hide");
-  expTab.classList.remove("hide");
-  expTab.classList.add("active");
+  histTab.classList.remove("hide");
+  histTab.classList.add("active");
   
-  expenses.classList.remove("inactive");
-  all.classList.add("inactive");
+  history.classList.remove("inactive");
+  recent.classList.add("inactive");
   income.classList.add("inactive");
 });
 incTab.addEventListener("click", function showOthers(){
-  allTab.classList.remove("active");
-  expTab.classList.remove("active");
-  allTab.classList.add("hide");
-  expTab.classList.add("hide");
+  recentTab.classList.remove("active");
+  histTab.classList.remove("active");
+  recentTab.classList.add("hide");
+  histTab.classList.add("hide");
   incTab.classList.remove("hide");
   incTab.classList.add("active");
   
   income.classList.remove("inactive");
-  all.classList.add("inactive");
-  expenses.classList.add("inactive");
+  recent.classList.add("inactive");
+  history.classList.add("inactive");
 });
-allTab.addEventListener("click", function showOthers(){
+recentTab.addEventListener("click", function showOthers(){
   incTab.classList.remove("active");
-  expTab.classList.remove("active");
+  histTab.classList.remove("active");
   incTab.classList.add("hide");
-  expTab.classList.add("hide");
-  allTab.classList.remove("hide");
-  allTab.classList.add("active");
+  histTab.classList.add("hide");
+  recentTab.classList.remove("hide");
+  recentTab.classList.add("active");
   
-  all.classList.remove("inactive");
-  expenses.classList.add("inactive");
+  recent.classList.remove("inactive");
+  history.classList.add("inactive");
   income.classList.add("inactive");
 });
 
@@ -86,7 +74,9 @@ return}
   console.log(Budget)
 })
 */
+function openModal(event){
+ modal.style.display = "flex"
+}
 function closeModal(event){
  modal.style.display = "none"
- event.preventDefault()
 }
