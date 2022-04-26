@@ -30,9 +30,9 @@ if (isset($_POST['add-transaction'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>MyBudgeter - Home</title>
-  <link rel="stylesheet" href="budget.css" />
+  <link rel="stylesheet" href="css/budget.css" />
   <link rel="stylesheet" href="css/line-awesome.css" type="text/css" />
-
+  <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 </head>
 
 <body>
@@ -41,7 +41,22 @@ if (isset($_POST['add-transaction'])) {
     <div class="logo">
       My<span class="white">Budget</span>er<small class="white">.app</small>
     </div>
-    <div class="card">card</div>
+    <div class="card-group">
+      <div class="card bal">
+      <h4>Total Balance</h4>
+      <p># 4000</p>
+    </div>
+    <div class="card-group-inner-grid">
+      <div class="card inc">
+        <h4>Total Income <i class="la la-arrow-alt-circle-down"></i></h4>
+        <p># 9000</p>
+      </div>
+      <div class="card exp">
+        
+        <h4>Total Expense <i class="la la-arrow-alt-circle-up"></i></h4>
+        <p># 5000</p>
+      </div></div>
+    </div>
     <!-- <div class="display">
       <div class="income" id="inc-display">
         <h3>Income</h3>
@@ -65,17 +80,17 @@ if (isset($_POST['add-transaction'])) {
     <!--<input type="date" name="" id="" value="y" @blur="getValue($event)" />-->
     <div class="body">
       <div class="toggle">
-        <div class="exp-tab active">
+        <div class="exp-tab hide">
           Expenses
         </div>
-        <div class="all-tab hide">
+        <div class="all-tab active">
           Recent
         </div>
         <div class="inc-tab hide">
           Income
         </div>
       </div>
-      <div class="exp-list">
+      <div class="exp-list inactive">
         <ul class="list">
           <li>
             <div>
@@ -157,10 +172,10 @@ if (isset($_POST['add-transaction'])) {
         </form>
       </div> -->
 
-      <div class="all-list inactive">
+      <div class="all-list active">
         <ul class="list">
           <li>
-            <div><span class="title">li.desc</span><span class="amount">#li.amount</span><span class="date">li.date</span>
+            <div><span class="title">li.title</span><span class="amount">#li.amount</span><span class="date">li.date</span>
               <!-- <span class="edit right" @click="editEl(input)"> <i class="las la-edit"></i></span> <span class="delete right" @click="deleteEl(index)"> <i class="las la-trash"></i></span> -->
             </div>
           </li>

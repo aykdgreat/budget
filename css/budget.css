@@ -58,7 +58,17 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 }
 
 .card {
-  
+  background-color: #fff;
+  margin: 15px 20px;
+  padding: 20px;
+  text-align: center;
+  line-height: 2em;
+  border-radius: 20px;
+}
+
+.card-group-inner-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .income, .balance, .expense {
@@ -77,27 +87,31 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
   cursor: pointer;
 }
 
-.balance {
-  border: 1px solid #486EE0;
-  margin: 10px 0;
-}
-
-.income p {
+.inc p {
   color: #1add7b;
   font-size: 16px;
 }
 
-.expense p {
+.exp p {
   font-size: 16px;
   color: #cc1212;
 }
 
-.balance h3 {
-	font-size: 23px;
+.bal h4, .inc h4, .exp h4 {
+  text-transform: uppercase;
+  color: #888787e6;
 }
 
-.balance p {
-  margin-top: 25px;
+.la-arrow-alt-circle-down {
+  color: #256e2e;
+}
+
+.la-arrow-alt-circle-up {
+  color: #a34;
+}
+
+.bal p {
+  margin-top: 10px;
   font-size: 25px;
   color: #334FA1;
 }
