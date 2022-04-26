@@ -91,30 +91,30 @@ if (isset($_POST['add-transaction'])) {
 
         <div class="filter">
           <form method="get" name="history" class="card-group-inner-grid">
-              <div class="hundred">
-                    <label for="month">Month: </label>
-                    <select name="month" class="input-field select">
-                      <option value="January">January</option>
-                      <option value="February">February</option>
-                      <option value="March">March</option>
-                      <option value="April">April</option>
-                      <option value="May">May</option>
-                      <option value="June">June</option>
-                      <option value="July">July</option>
-                      <option value="August">August</option>
-                      <option value="September">September</option>
-                      <option value="October">October</option>
-                      <option value="November">November</option>
-                      <option value="December">December</option>
-                    </select>
-              </div>
-                <div class="hundred">
-                  <label for="order">Order: </label>
-                  <select name="order" class="input-field select">
-                   <option value="ASC">Ascending</option>
-                   <option value="DESC">Descending</option>
-                  </select>
-                </div>
+            <div class="hundred">
+              <label for="month">Month: </label>
+              <select name="month" class="input-field select">
+                <option value="January">January</option>
+                <option value="February">February</option>
+                <option value="March">March</option>
+                <option value="April">April</option>
+                <option value="May">May</option>
+                <option value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+                <option value="September">September</option>
+                <option value="October">October</option>
+                <option value="November">November</option>
+                <option value="December">December</option>
+              </select>
+            </div>
+            <div class="hundred">
+              <label for="order">Order: </label>
+              <select name="order" class="input-field select">
+                <option value="ASC">Ascending</option>
+                <option value="DESC">Descending</option>
+              </select>
+            </div>
           </form>
         </div>
 
@@ -224,11 +224,9 @@ if (isset($_POST['add-transaction'])) {
 
       </div>
 
-      <!-- for loop-->
       <div class="inc-list inactive">
         <ul class="list">
           <li class="card-small">
-            <!-- <div><span class="title">li.desc</span><span class="amount">## 4,000</span><span class="date">li.date</span><span class="edit right"> <i class="las la-edit"></i></span> <span class="delete right"> <i class="las la-trash"></i></span></div> -->
           </li>
         </ul>
       </div>

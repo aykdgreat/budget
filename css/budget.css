@@ -74,7 +74,7 @@ input::-webkit-inner-spin-button {
 }
 
 .hundred {
-width: 100%;
+  width: 100%;
 }
 
 .hide {
@@ -319,7 +319,6 @@ li {
   background-color: #1f2f61;
   transition: background-color 0.2s ease-in;
 }
-
 
 footer {
   text-align: center;
