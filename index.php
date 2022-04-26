@@ -75,46 +75,58 @@ if (isset($_POST['add-transaction'])) {
       </div>
 
       <div class="hist-list active">
+        <div class="card-group-inner-grid">
+          <div class="card inc">
+            <span>Income: </span>
+            <span>#1000</span>
+          </div>
+          <div class="card exp">
+            <span>Expense: </span>
+            <span>- #3000</span>
+          </div>
+        </div>
         <div class="filter">
           <form method="get" name="history">
-            <div>
-              <label for="month">Select Month: </label>
-              <select name="month" class="input-field select">
-                <option value="January">January</option>
-                <option value="February">February</option>
-                <option value="March">March</option>
-                <option value="April">April</option>
-                <option value="May">May</option>
-                <option value="June">June</option>
-                <option value="July">July</option>
-                <option value="August">August</option>
-                <option value="September">September</option>
-                <option value="October">October</option>
-                <option value="November">November</option>
-                <option value="December">December</option>
-              </select>
-            </div>
-              
-            <div>
-              <label for="order">Order: </label>
-              <select name="order" class="input-field select">
-                <option value="ASC">Ascending</option>
-                <option value="DESC">Descending</option>
-              </select>
-            </div>
+            <table>
+              <div>
+                <tr>
+                  <td>
+                    <label for="month">Select Month: </label>
+                  </td>
+                  <td>
+                    <select name="month" class="input-field select">
+                      <option value="January">January</option>
+                      <option value="February">February</option>
+                      <option value="March">March</option>
+                      <option value="April">April</option>
+                      <option value="May">May</option>
+                      <option value="June">June</option>
+                      <option value="July">July</option>
+                      <option value="August">August</option>
+                      <option value="September">September</option>
+                      <option value="October">October</option>
+                      <option value="November">November</option>
+                      <option value="December">December</option>
+                    </select>
+                  </td>
+              </div>
+              </tr>
+              <tr>
+                <div>
+                <td>
+                  <label for="order">Order: </label>
+                </td>
+                <td>
+                  <select name="order" class="input-field select">
+                   <option value="ASC">Ascending</option>
+                   <option value="DESC">Descending</option>
+                  </select>
+                </td>
+                </div>
+              </tr>
+            </table>
           </form>
         </div>
-
-        <div class="card-group-inner-grid">
-        <div class="card inc">
-          <span>Income: </span>
-          <span>#1000</span>
-        </div>
-        <div class="card exp">
-          <span>Expense: </span>
-          <span>- #3000</span>
-        </div>
-      </div>
 
         <span class="date"><?php echo date("Y-m-d", strtotime("today")); ?></span>
         <?php if (!empty($true_hist)) : ?>
