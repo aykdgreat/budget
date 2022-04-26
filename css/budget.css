@@ -42,10 +42,12 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
   padding: 10px 50px;
   font-family: Poppins,Helvetica;
   color: #486EE0;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .white {
   color: #fff;
+  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue
 }
 
 .logo small {
@@ -64,6 +66,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
   text-align: center;
   line-height: 2em;
   border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .card-group-inner-grid {
