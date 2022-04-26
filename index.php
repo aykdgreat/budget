@@ -36,6 +36,11 @@ if (isset($_POST['add-transaction'])) {
   <link rel="stylesheet" href="css/budget.css" />
   <link rel="stylesheet" href="css/line-awesome.css" type="text/css" />
   <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://www.dafontfree.net/embed/YnJpdGFubmljLWJvbGQtcmVndWxhciZkYXRhLzEzL2IvNjQ1MzAvQlJJVEFOSUMuVFRG" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
@@ -322,12 +327,10 @@ if (isset($_POST['add-transaction'])) {
           </table>
       </form>
     </div>
+    <footer>Copyright &copy; <?php echo date("Y"); ?> <a href="http://github.com/aykdgreat">AYKdgreat</a></footer>
   </div>
-  <footer>Copyright &copy; <?php echo date("Y"); ?> <a href="http://github.com/aykdgreat">AYKdgreat</a></footer>
 
   <button class="open-modal" onclick="openModal()"><i class="la la-plus"></i></button>
-  <!-- <script src="vue.js"></script> -->
-  <!-- <script src="vue-script.js"></script> -->
   <script src="budget.js" type="text/javascript"></script>
 </body>
 
