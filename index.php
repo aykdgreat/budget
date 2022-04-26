@@ -85,15 +85,16 @@ if (isset($_POST['add-transaction'])) {
             <span>- #3000</span>
           </div>
         </div>
+
         <div class="filter">
-          <form method="get" name="history">
-            <table>
-              <div>
-                <tr>
-                  <td>
-                    <label for="month">Select Month: </label>
-                  </td>
-                  <td>
+          <form method="get" name="history" class="card-group-inner-grid">
+            <!-- <table> -->
+              <div class="hundred">
+                <!-- <tr> -->
+                  <!-- <td> -->
+                    <label for="month">Month: </label>
+                  <!-- </td> -->
+                  <!-- <td>/ -->
                     <select name="month" class="input-field select">
                       <option value="January">January</option>
                       <option value="February">February</option>
@@ -108,23 +109,23 @@ if (isset($_POST['add-transaction'])) {
                       <option value="November">November</option>
                       <option value="December">December</option>
                     </select>
-                  </td>
+                  <!-- </td> -->
               </div>
-              </tr>
-              <tr>
-                <div>
-                <td>
+              <!-- </tr> -->
+              <!-- <tr> -->
+                <div class="hundred">
+                <!-- <td> -->
                   <label for="order">Order: </label>
-                </td>
-                <td>
+                <!-- </td> -->
+                <!-- <td> -->
                   <select name="order" class="input-field select">
                    <option value="ASC">Ascending</option>
                    <option value="DESC">Descending</option>
                   </select>
-                </td>
+                <!-- </td> -->
                 </div>
-              </tr>
-            </table>
+              <!-- </tr> -->
+            <!-- </table> -->
           </form>
         </div>
 

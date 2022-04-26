@@ -73,6 +73,10 @@ input::-webkit-inner-spin-button {
   grid-template-columns: 1fr 1fr;
 }
 
+.hundred {
+width: 100%;
+}
+
 .hide {
   cursor: pointer;
 }
@@ -137,21 +141,16 @@ input::-webkit-inner-spin-button {
 .hist-list,
 .recent-list {
   clear: left;
-  /* height: 330px; */
-  /*height: 100vh;*/
   position: relative;
 }
 
 .list {
-  /*height: 300px;*/
-  /* height: 80%; */
   width: 100%;
   overflow-x: auto;
 }
 
 li {
   position: relative;
-  /* padding: 5px 0; */
 }
 
 .card-small {
@@ -176,9 +175,6 @@ li {
 .amount {
   float: right;
   text-align: right;
-  /* width: 50%; */
-  /* font-size: 18px; */
-  /* padding-right: 10px; */
   font-family: "Britannic", sans-serif;
 }
 
