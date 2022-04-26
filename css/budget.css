@@ -55,7 +55,7 @@ input::-webkit-inner-spin-button {
 
 .display {
   margin: 15px 20px;
-  font-family: britannic-bold-regular-bold-regular, sans-serif;
+  font-family: "britannic-bold-regular", sans-serif;
 }
 
 .card {
@@ -120,7 +120,6 @@ width: 100%;
 }
 
 .toggle div {
-  /* display: inline-block; */
   width: 33%;
   float: left;
   text-align: center;
@@ -175,7 +174,7 @@ li {
 .amount {
   float: right;
   text-align: right;
-  font-family: "britannic-bold-regular-bold-regular", sans-serif;
+  font-family: "britannic-bold-regular", sans-serif;
 }
 
 .date {
@@ -313,7 +312,7 @@ li {
   color: #fff;
   font-size: 20px;
   cursor: pointer;
-  font-family: britannic-bold-regular-bold-regular, sans-serif;
+  font-family: "britannic-bold-regular", sans-serif;
 }
 
 .add-transaction:hover {

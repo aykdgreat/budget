@@ -263,7 +263,7 @@ if (isset($_POST['add-transaction'])) {
     </div>
     <div class="form" id="modal">
       <div class="close-modal" onclick="closeModal()">&times;</div>
-      <form method="post" action="" class="input-form" onsubmit="closeModal()" autocomplete="off">
+      <form method="post" ondblclick="closeModal()" class="input-form" onsubmit="closeModal()" autocomplete="off">
         <h2 style="text-align: center; margin-bottom:5px;">New Transaction</h1>
           <div class="error"><?php echo $error . "<br>"; ?></div>
           <table>
