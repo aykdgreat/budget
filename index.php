@@ -55,7 +55,6 @@ if (isset($_POST['add-transaction'])) {
           <p># 9000</p>
         </div>
         <div class="card exp">
-
           <h4>Total Expense <i class="la la-arrow-alt-circle-up"></i></h4>
           <p># 5000</p>
         </div>
@@ -68,7 +67,7 @@ if (isset($_POST['add-transaction'])) {
           History
         </div>
         <div class="recent-tab active">
-          Recent Transactions
+          Recent
         </div>
         <div class="inc-tab hide">
           Income
@@ -78,21 +77,44 @@ if (isset($_POST['add-transaction'])) {
       <div class="hist-list active">
         <div class="filter">
           <form method="get" name="history">
-            <label for="month">Select Month: </label><select name="month" class="input-field select">
-              <option value="January">January</option>
-              <option value="February">February</option>
-              <option value="March">March</option>
-              <option value="April">April</option>
-              <option value="May">May</option>
-              <option value="June">June</option>
-              <option value="July">July</option>
-              <option value="August">August</option>
-              <option value="September">September</option>
-              <option value="October">October</option>
-              <option value="November">November</option>
-              <option value="December">December</option>
-            </select></form>
+            <div>
+              <label for="month">Select Month: </label>
+              <select name="month" class="input-field select">
+                <option value="January">January</option>
+                <option value="February">February</option>
+                <option value="March">March</option>
+                <option value="April">April</option>
+                <option value="May">May</option>
+                <option value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+                <option value="September">September</option>
+                <option value="October">October</option>
+                <option value="November">November</option>
+                <option value="December">December</option>
+              </select>
+            </div>
+              
+            <div>
+              <label for="order">Order: </label>
+              <select name="order" class="input-field select">
+                <option value="ASC">Ascending</option>
+                <option value="DESC">Descending</option>
+              </select>
+            </div>
+          </form>
         </div>
+
+        <div class="card-group-inner-grid">
+        <div class="card inc">
+          <span>Income: </span>
+          <span>#1000</span>
+        </div>
+        <div class="card exp">
+          <span>Expense: </span>
+          <span>- #3000</span>
+        </div>
+      </div>
 
         <span class="date"><?php echo date("Y-m-d", strtotime("today")); ?></span>
         <?php if (!empty($true_hist)) : ?>
@@ -146,7 +168,7 @@ if (isset($_POST['add-transaction'])) {
         <?php endif; ?>
       </div>
 
-      <div class="recent-list active">
+      <div class="recent-list inactive">
         <span class="date">Today - <?php echo date("Y-m-d", strtotime("today")); ?></span>
         <?php if (!empty($true_today)) : ?>
           <ul class="list">
@@ -288,7 +310,7 @@ if (isset($_POST['add-transaction'])) {
       </form>
     </div>
   </div>
-
+  <footer>Copyright &copy; <?php echo date("Y"); ?> <a href="http://github.com/aykdgreat">AYKdgreat</a></footer>
 
   <button class="open-modal" onclick="openModal()"><i class="la la-plus"></i></button>
   <!-- <script src="vue.js"></script> -->
