@@ -66,8 +66,18 @@ if (isset($_POST['add-transaction'])) {
 }
 
 # HISTORY
+$read_history = "SELECT * FROM b_tracker where MONTHNAME(date_) = 'April'";
+$result = mysqli_query($conn, $read_history);
+if (mysqli_num_rows($result) > 0) {
+  $tr_history = mysqli_fetch_all($result, MYSQLI_ASSOC);
+  print_r($tr_history);
+  echo count($tr_history);
+}
 
-
+$cnt = count(array_filter($tr_history,function($element) {
+  return $element['date_']== $element['date_'];
+}));
+echo "<br><br>".$cnt;
 ?>
 
 <!DOCTYPE html>
@@ -163,9 +173,9 @@ if (isset($_POST['add-transaction'])) {
           </form>
         </div>
 
-        <span class="date"><?php echo date("Y-m-d", strtotime("today")); ?></span>
-        <?php if (!empty($true_hist)) : ?>
+        <?php if (!empty($tr_history)) : ?>
           <ul class="list">
+            <span class="date"><?php echo date("Y-m-d", strtotime("today")); ?></span>
             <li class="card-small clearfix">
               <div>
                 <span class="title">1. So what if this happens to pass its boundary <i class="las la-hashtag"></i></span>
