@@ -210,7 +210,7 @@ if (isset($_POST['add-transaction'])) {
         <span class="date">Today - <?php echo $today ?></span>
         <?php if (!empty($tr_today)) : ?>
           <ul class="list">
-            <?php foreach ($tr_all as $tr): 
+            <?php foreach ($tr_today as $tr): 
               if ($tr['date_'] == $today):
               ?>
             <li class="card-small clearfix">
@@ -220,34 +220,39 @@ if (isset($_POST['add-transaction'])) {
               </div>
             </li>
             <?php endif; ?>
-          <?php endforeach; ?>
-        </ul>
+            <?php endforeach; ?>
+          </ul>
         <?php else : ?>
           <ul class="list">
             <li class="card-small clearfix">
               Nothing for today!
             </li>
           </ul>
-        <?php endif; ?>
-
+          <?php endif; ?>
+          
         <span class="date">Yesterday - <?php echo $yesterday; ?></span>
         <?php if (!empty($tr_yesterday)) : ?>
           <ul class="list">
+            <?php foreach ($tr_yesterday as $tr): 
+              if ($tr['date_'] == $yesterday):
+                ?>
             <li class="card-small clearfix">
               <div>
-                <span class="title">1. <?php echo $tr['title_']; ?> <i class="las la-hashtag"></i></span>
-                <span class="amount"># <?php echo $tr['amount_']; ?></span>
-              </div>
-            </li>
-          </ul>
+              <span class="title">1. <?php echo $tr['title_']; ?> <i class="las la-<?php echo $tr['option_'] == 'cash' ? 'hashtag' : 'credit-card';?>"></i></span>
+              <span class="amount"># <?php echo $tr['amount_']; ?></span>
+            </div>
+          </li>
+          <?php endif; ?>
+          <?php endforeach; ?>
+        </ul>
         <?php else : ?>
           <ul class="list">
             <li class="card-small clearfix">
               Nothing recorded yesterday!
             </li>
           </ul>
-        <?php endif; ?>
-
+          <?php endif; ?>
+          
       </div>
 
       <div class="inc-list inactive">

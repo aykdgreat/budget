@@ -81,13 +81,13 @@ input::-webkit-inner-spin-button {
   cursor: pointer;
 }
 
-.inc p {
+.inc p, .i-type_ {
   font-size: 16px;
   font-weight: 600;
   color: #1add7b;
 }
 
-.exp p {
+.exp p, .e-type_ {
   font-size: 16px;
   font-weight: 600;
   color: #cc1212;
