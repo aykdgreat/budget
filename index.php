@@ -8,7 +8,7 @@ if (!$conn) {
 }
 
 # GLOBALS
-$error = $tr_amount = $tr_title = $tr_date = $tr_type = $tr_option = "";
+$error = $tr_amount = $tr_title = $tr_date = $tr_type = $tr_option = $hist_month = $hist_order = "";
 $today = date("Y-m-d", strtotime("today"));
 $yesterday = date("Y-m-d", strtotime("yesterday"));
 $month = date("F", strtotime("today"));
@@ -66,18 +66,25 @@ if (isset($_POST['add-transaction'])) {
 }
 
 # HISTORY
-$read_history = "SELECT * FROM b_tracker where MONTHNAME(date_) = 'April'";
-$result = mysqli_query($conn, $read_history);
-if (mysqli_num_rows($result) > 0) {
-  $tr_history = mysqli_fetch_all($result, MYSQLI_ASSOC);
-  print_r($tr_history);
-  echo count($tr_history);
-}
+// $read_history = "SELECT * FROM b_tracker where MONTHNAME(date_) = 'April'";
+// $result = mysqli_query($conn, $read_history);
+// if (mysqli_num_rows($result) > 0) {
+//   $tr_history = mysqli_fetch_all($result, MYSQLI_ASSOC);
+//   // print_r($tr_history);
+//   // echo count($tr_history);
+// }
 
-if (isset($_GET['view-history'])) {
-  $hist_month = $_GET['hist-month'];
-  $hist_order = $_GET['hist-order'];
-  echo 'get history orderby';
+if (isset($_POST['view-history'])) {
+  $hist_month = $_POST['hist-month'];
+  $hist_order = $_POST['hist-order'];
+  
+  $read_history = "SELECT * FROM b_tracker where MONTHNAME(date_) = '$hist_month' order by date_ $hist_order";
+  $result = mysqli_query($conn, $read_history);
+  if (mysqli_num_rows($result) > 0) {
+    $tr_history = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    print_r($tr_history);
+    // echo count($tr_history);
+  }
 }
 ?>
 
@@ -146,7 +153,7 @@ if (isset($_GET['view-history'])) {
         </div>
 
         <div class="filter">
-          <form method="get" name="history" class="card-group-inner-grid-three">
+          <form method="post" name="history" class="card-group-inner-grid-three">
             <div class="hundred">
               <label for="hist-month">Month: </label>
               <select name="hist-month" class="input-field select">
@@ -192,7 +199,7 @@ if (isset($_GET['view-history'])) {
         <?php else : ?>
           <ul class="list">
             <li class="card-small clearfix">
-              Nothing for today!
+              Nothing transaction recorded for <?php echo $hist_month; ?>
             </li>
           </ul>
         <?php endif; ?>
