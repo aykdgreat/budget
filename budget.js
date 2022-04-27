@@ -60,20 +60,8 @@ recentTab.addEventListener("click", function showOthers() {
   Budget.push(incomeEntry);
   console.log(Budget);
 });
-addExp.addEventListener("click", function(){
-  if (!expenseDesc.value || !expenseAmt.value) {
-    document.querySelector("#error"). innerHTML = "nooooooooooo, put something"
-return}
-  
-  let expenseEntry = {
-    type: "expense",
-    desc: expenseDesc.value,
-    amount: parseFloat(expenseAmt.value)
-  }
-  Budget.push(expenseEntry)
-  console.log(Budget)
-})
 */
+
 function openModal(event) {
   modal.style.display = "flex";
 }
@@ -84,7 +72,16 @@ function closeModal(event) {
 
 document.addEventListener("dblclick", function toggleModalClose(e) {
   if (modal.style.display == "flex" && e.target.className == "form") {
-    console.log(e.target.className);
     closeModal();
   }
 });
+
+errorDiv = document.querySelector("#error-div")
+if(errorDiv.firstElementChild.id) {
+  openModal()
+}
+
+// trying to clear the form after a submission
+// let form = document.querySelectorAll(".input-form")[0]
+// console.log(form);
+// form.reset()

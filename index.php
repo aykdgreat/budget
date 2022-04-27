@@ -1,25 +1,61 @@
 <?php
 
-$error = $tr_amount = $tr_title = "";
-$true_today = [];
-$true_tomorrow = ["stuff"];
-$true_hist = ["yes"];
+$conn = mysqli_connect("127.0.0.1", "root", "", "budget");
+
+if(!$conn) {
+  die("Connection error:". mysqli_connect_error());
+}
+
+$error = $tr_amount = $tr_title = $tr_date = $tr_type = $tr_option = "";
+$today = date("Y-m-d", strtotime("today"));
+$yesterday = date("Y-m-d", strtotime("yesterday"));
+
+$read_all = "SELECT * FROM b_tracker";
+$result = mysqli_query($conn, $read_all);
+if (mysqli_num_rows($result) > 0) {
+  $tr_all = mysqli_fetch_all($result, MYSQLI_ASSOC);
+  // print_r($tr_all);
+}
+
+$read_today = "SELECT * FROM b_tracker WHERE date_ = '$today'";
+$result = mysqli_query($conn, $read_today);
+if (mysqli_num_rows($result) > 0) {
+  $tr_today = mysqli_fetch_all($result, MYSQLI_ASSOC);
+  print_r($tr_today);
+}
+
+$read_yesterday = "SELECT * FROM b_tracker WHERE date_ = '$yesterday'";
+$result = mysqli_query($conn, $read_yesterday);
+if (mysqli_num_rows($result) > 0) {
+  $tr_yesterday = mysqli_fetch_all($result, MYSQLI_ASSOC);
+  print_r($tr_yesterday);
+}
+
 
 if (isset($_POST['add-transaction'])) {
-  $tr_title = $_POST['tr-title'];
+  $tr_title = trim($_POST['tr-title']);
   $tr_amount = $_POST['tr-amount'];
   $tr_date = $_POST['tr-date'];
   $tr_type = $_POST['tr-type'];
   $tr_option = $_POST['tr-payment-option'];
 
-  if (!(empty($tr_title) && empty($tr_amount) && empty($tr_date) && empty($tr_type) && empty($tr_option))) {
-    echo $tr_title;
-    echo $tr_amount;
-    echo $tr_date;
-    echo $tr_type;
-    echo $tr_option;
+  if (!(empty($tr_title) || empty($tr_amount) || empty($tr_date) || empty($tr_type) || empty($tr_option))) {
+    if (!(str_word_count($tr_title) > 40)) {
+      $tr_title = mysqli_real_escape_string($conn, $tr_title);
+      $tr_amount = mysqli_real_escape_string($conn, $tr_amount);
+  
+      $create = "INSERT INTO b_tracker (title_, amount_, type_, date_, option_) VALUES('$tr_title', '$tr_amount', '$tr_type', '$tr_date', '$tr_option')";
+      $query = mysqli_query($conn, $create);
+      if($query) {
+        header("location: index.php?insert=success");
+      } else {
+        die("Error:". mysqli_error($conn));
+      }
+    } else {
+      $error = "<span id='error-msg'>Title longer than 40</span>";
+    }
   } else {
-    $error = "Add description and amount";
+    $error = "<span id='error-msg'>* Required</span>";
   }
 }
 
@@ -171,24 +207,21 @@ if (isset($_POST['add-transaction'])) {
       </div>
 
       <div class="recent-list active">
-        <span class="date">Today - <?php echo date("Y-m-d", strtotime("today")); ?></span>
-        <?php if (!empty($true_today)) : ?>
+        <span class="date">Today - <?php echo $today ?></span>
+        <?php if (!empty($tr_today)) : ?>
           <ul class="list">
+            <?php foreach ($tr_all as $tr): 
+              if ($tr['date_'] == $today):
+              ?>
             <li class="card-small clearfix">
               <div>
-                <span class="title">1. li.title <i class="las la-hashtag"></i></span>
-                <span class="amount"># 4,000</span>
+                <span class="title">0. <?php echo $tr['title_']; ?> <i class="las la-hashtag"></i></span>
+                <span class="amount"># <?php echo $tr['amount_']; ?></span>
               </div>
             </li>
-            <li class="card-small clearfix">
-              <div>
-                <span class="title">2. li.title <i class="las la-credit-card"></i>
-
-                </span>
-                <span class="amount"># 4,000</span>
-              </div>
-            </li>
-          </ul>
+            <?php endif; ?>
+          <?php endforeach; ?>
+        </ul>
         <?php else : ?>
           <ul class="list">
             <li class="card-small clearfix">
@@ -196,28 +229,21 @@ if (isset($_POST['add-transaction'])) {
             </li>
           </ul>
         <?php endif; ?>
-        <?php if (!empty($true_tomorrow)) : ?>
-          <span class="date">Yesterday - <?php echo date("Y-m-d", strtotime("yesterday")); ?></span>
+
+        <span class="date">Yesterday - <?php echo $yesterday; ?></span>
+        <?php if (!empty($tr_yesterday)) : ?>
           <ul class="list">
             <li class="card-small clearfix">
               <div>
-                <span class="title">1. li.title <i class="las la-hashtag"></i></span>
-                <span class="amount"># 4,000</span>
-              </div>
-            </li>
-            <li class="card-small clearfix">
-              <div>
-                <span class="title">2. li.title <i class="las la-credit-card"></i>
-
-                </span>
-                <span class="amount"># 4,000</span>
+                <span class="title">1. <?php echo $tr['title_']; ?> <i class="las la-hashtag"></i></span>
+                <span class="amount"># <?php echo $tr['amount_']; ?></span>
               </div>
             </li>
           </ul>
         <?php else : ?>
           <ul class="list">
             <li class="card-small clearfix">
-              Nothing for today!
+              Nothing recorded yesterday!
             </li>
           </ul>
         <?php endif; ?>
@@ -231,11 +257,14 @@ if (isset($_POST['add-transaction'])) {
         </ul>
       </div>
     </div>
+    
     <div class="form" id="modal">
       <div class="close-modal" onclick="closeModal()">&times;</div>
-      <form method="post" class="input-form" onsubmit="closeModal()" autocomplete="off">
+      <form method="post" class="input-form" autocomplete="off">
         <h2 style="text-align: center; margin-bottom:5px;">New Transaction</h1>
-          <div class="error"><?php echo $error . "<br>"; ?></div>
+          <div class="error" id="error-div">
+            <?php echo $error."<br>"; ?>
+          </div>
           <table>
             <tr>
               <td class="m-right">
@@ -260,8 +289,9 @@ if (isset($_POST['add-transaction'])) {
               </td>
               <td>
                 <select name="tr-type" class="input-field">
-                  <option value="income">Income</option>
-                  <option value="expense">Expense</option>
+                  <option value="">Select type</option>
+                  <option value="income" <?php if ($tr_type == "income") echo "selected"; ?>>Income</option>
+                  <option value="expense" <?php if ($tr_type == "expense") echo "selected"; ?>>Expense</option>
                 </select>
               </td>
               </td>
@@ -271,7 +301,7 @@ if (isset($_POST['add-transaction'])) {
                 <label for="tr-type">Date <span class="error">*</span></label>
               </td>
               <td>
-                <input type="date" name="tr-date" class="input-field">
+                <input type="date" name="tr-date" class="input-field" value="<?php echo $tr_date; ?>">
               </td>
               </td>
             </tr>
@@ -283,15 +313,16 @@ if (isset($_POST['add-transaction'])) {
               </td>
               <td>
                 <select name="tr-payment-option" class="input-field">
-                  <option value="cash">Cash</option>
-                  <option value="card">Card</option>
+                  <option value="">Select option</option>
+                  <option value="cash" <?php if ($tr_option == "cash") echo "selected"; ?>>Cash</option>
+                  <option value="card" <?php if ($tr_option == "card") echo "selected"; ?>>Card</option>
                 </select>
               </td>
               </td>
             </tr>
             <tr>
               <td colspan="2">
-                <input type="submit" class="add-transaction" name="add-transaction" value="Add Transaction">
+                <input type="submit" id="add-transaction" class="add-transaction" name="add-transaction" value="Add Transaction">
               </td>
             </tr>
           </table>
