@@ -73,6 +73,11 @@ input::-webkit-inner-spin-button {
   grid-template-columns: 1fr 1fr;
 }
 
+.card-group-inner-grid-three {
+  display: grid;
+  grid-template-columns: 1fr 1fr 100px;
+}
+
 .hundred {
   width: 100%;
 }
@@ -81,20 +86,22 @@ input::-webkit-inner-spin-button {
   cursor: pointer;
 }
 
-.inc p, .i-type_ {
+.inc p,
+.i-type_ {
   font-size: 16px;
   font-weight: 600;
   color: #1add7b;
 }
 
-
-.exp p, .e-type_ {
+.exp p,
+.e-type_ {
   font-size: 16px;
   font-weight: 600;
   color: #cc1212;
 }
 
-.i-type_, .e-type_ {
+.i-type_,
+.e-type_ {
   font-size: 15px;
   font-weight: normal;
 }
@@ -300,7 +307,7 @@ li {
 }
 
 .select {
-  width: 30%;
+  width: 50%;
   margin: 5px auto;
 }
 
@@ -321,7 +328,20 @@ li {
   font-family: "britannic-bold-regular", sans-serif;
 }
 
-.add-transaction:hover {
+.view-history {
+  width: 100%;
+  margin: 5px 0;
+  padding: 10px;
+  text-transform: uppercase;
+  background-color: #1f2f61b3;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  font-family: "britannic-bold-regular", sans-serif;
+}
+
+.add-transaction:hover, .view-history:hover {
   background-color: #1f2f61;
   transition: background-color 0.2s ease-in;
 }

@@ -74,10 +74,6 @@ if (mysqli_num_rows($result) > 0) {
   echo count($tr_history);
 }
 
-$cnt = count(array_filter($tr_history,function($element) {
-  return $element['date_']== $element['date_'];
-}));
-echo "<br><br>".$cnt;
 ?>
 
 <!DOCTYPE html>
@@ -145,7 +141,7 @@ echo "<br><br>".$cnt;
         </div>
 
         <div class="filter">
-          <form method="get" name="history" class="card-group-inner-grid">
+          <form method="get" name="history" class="card-group-inner-grid-three">
             <div class="hundred">
               <label for="month">Month: </label>
               <select name="month" class="input-field select">
@@ -170,51 +166,23 @@ echo "<br><br>".$cnt;
                 <option value="DESC">Descending</option>
               </select>
             </div>
+            <div class="hundred">
+              <input type="submit" value="View" class="view-history">
+            </div>
           </form>
         </div>
 
         <?php if (!empty($tr_history)) : ?>
           <ul class="list">
-            <span class="date"><?php echo date("Y-m-d", strtotime("today")); ?></span>
+          <?php foreach ($tr_history as $tr): ?>
+            <span class="date"><?php echo $tr['date_']; ?></span>
             <li class="card-small clearfix">
-              <div>
-                <span class="title">1. So what if this happens to pass its boundary <i class="las la-hashtag"></i></span>
-                <span class="amount"># 4,000</span>
-              </div>
+            <div>
+              <span class="title">1. <?php echo $tr['title_']; ?> <i class="las la-<?php echo $tr['option_'] == 'cash' ? 'hashtag' : 'credit-card';?>"></i></span>
+              <span class="amount <?php echo $tr['type_'] == 'income' ? 'i-type_' : 'e-type_'; ?>"># <?php echo $tr['amount_']; ?></span>
+            </div>
             </li>
-            <li class="card-small clearfix">
-              <div>
-                <span class="title">2. li.title <i class="las la-credit-card"></i>
-
-                </span>
-                <span class="amount"># 4,000</span>
-              </div>
-            </li>
-          </ul>
-        <?php else : ?>
-          <ul class="list">
-            <li class="card-small clearfix">
-              Nothing for today!
-            </li>
-          </ul>
-        <?php endif; ?>
-        <?php if (!empty($true_tomorrow)) : ?>
-          <span class="date"><?php echo date("Y-m-d", strtotime("yesterday")); ?></span>
-          <ul class="list">
-            <li class="card-small clearfix">
-              <div>
-                <span class="title">1. li.title <i class="las la-hashtag"></i></span>
-                <span class="amount"># 4,000</span>
-              </div>
-            </li>
-            <li class="card-small clearfix">
-              <div>
-                <span class="title">2. li.title <i class="las la-credit-card"></i>
-
-                </span>
-                <span class="amount"># 4,000</span>
-              </div>
-            </li>
+            <?php endforeach; ?>
           </ul>
         <?php else : ?>
           <ul class="list">
