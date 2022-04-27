@@ -2,14 +2,18 @@
 
 $conn = mysqli_connect("127.0.0.1", "root", "", "budget");
 
+# CONNECTION
 if(!$conn) {
   die("Connection error:". mysqli_connect_error());
 }
 
+# GLOBALS
 $error = $tr_amount = $tr_title = $tr_date = $tr_type = $tr_option = "";
 $today = date("Y-m-d", strtotime("today"));
 $yesterday = date("Y-m-d", strtotime("yesterday"));
+$month = date("F", strtotime("today"));
 
+# ALL TR
 $read_all = "SELECT * FROM b_tracker";
 $result = mysqli_query($conn, $read_all);
 if (mysqli_num_rows($result) > 0) {
@@ -17,21 +21,23 @@ if (mysqli_num_rows($result) > 0) {
   // print_r($tr_all);
 }
 
+# TODAY TR
 $read_today = "SELECT * FROM b_tracker WHERE date_ = '$today'";
 $result = mysqli_query($conn, $read_today);
 if (mysqli_num_rows($result) > 0) {
   $tr_today = mysqli_fetch_all($result, MYSQLI_ASSOC);
-  print_r($tr_today);
+  // print_r($tr_today);
 }
 
+# YESTERDAY TR
 $read_yesterday = "SELECT * FROM b_tracker WHERE date_ = '$yesterday'";
 $result = mysqli_query($conn, $read_yesterday);
 if (mysqli_num_rows($result) > 0) {
   $tr_yesterday = mysqli_fetch_all($result, MYSQLI_ASSOC);
-  print_r($tr_yesterday);
+  // print_r($tr_yesterday);
 }
 
-
+# ADD NEW TRANSACTION
 if (isset($_POST['add-transaction'])) {
   $tr_title = trim($_POST['tr-title']);
   $tr_amount = $_POST['tr-amount'];
@@ -58,6 +64,9 @@ if (isset($_POST['add-transaction'])) {
     $error = "<span id='error-msg'>* Required</span>";
   }
 }
+
+# HISTORY
+
 
 ?>
 
@@ -102,10 +111,10 @@ if (isset($_POST['add-transaction'])) {
 
     <div class="body">
       <div class="toggle">
-        <div class="hist-tab hide">
+        <div class="hist-tab active">
           History
         </div>
-        <div class="recent-tab active">
+        <div class="recent-tab hide">
           Recent
         </div>
         <div class="inc-tab hide">
@@ -113,7 +122,7 @@ if (isset($_POST['add-transaction'])) {
         </div>
       </div>
 
-      <div class="hist-list inactive">
+      <div class="hist-list active">
         <div class="card-group-inner-grid">
           <div class="card inc">
             <span>Income: </span>
@@ -130,18 +139,18 @@ if (isset($_POST['add-transaction'])) {
             <div class="hundred">
               <label for="month">Month: </label>
               <select name="month" class="input-field select">
-                <option value="January">January</option>
-                <option value="February">February</option>
-                <option value="March">March</option>
-                <option value="April">April</option>
-                <option value="May">May</option>
-                <option value="June">June</option>
-                <option value="July">July</option>
-                <option value="August">August</option>
-                <option value="September">September</option>
-                <option value="October">October</option>
-                <option value="November">November</option>
-                <option value="December">December</option>
+                <option value="January" <?php if ($month == "January") echo "selected"?>>January</option>
+                <option value="February" <?php if ($month == "February") echo "selected"?>>February</option>
+                <option value="March" <?php if ($month == "March") echo "selected"?>>March</option>
+                <option value="April" <?php if ($month == "April") echo "selected"?>>April</option>
+                <option value="May" <?php if ($month == "May") echo "selected"?>>May</option>
+                <option value="June" <?php if ($month == "June") echo "selected"?>>June</option>
+                <option value="July" <?php if ($month == "July") echo "selected"?>>July</option>
+                <option value="August" <?php if ($month == "August") echo "selected"?>>August</option>
+                <option value="September" <?php if ($month == "September") echo "selected"?>>September</option>
+                <option value="October" <?php if ($month == "October") echo "selected"?>>October</option>
+                <option value="November" <?php if ($month == "November") echo "selected"?>>November</option>
+                <option value="December" <?php if ($month == "December") echo "selected"?>>December</option>
               </select>
             </div>
             <div class="hundred">
@@ -206,7 +215,7 @@ if (isset($_POST['add-transaction'])) {
         <?php endif; ?>
       </div>
 
-      <div class="recent-list active">
+      <div class="recent-list inactive">
         <span class="date">Today - <?php echo $today ?></span>
         <?php if (!empty($tr_today)) : ?>
           <ul class="list">
