@@ -11,7 +11,7 @@
 }
 
 body {
-  font-family: "Gill Sans MT", sans-serif;
+  font-family: Poppins, sans-serif;
   font-size: 18px;
   background-color: #e4e9f1;
   position: relative;
@@ -30,15 +30,16 @@ body {
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
+  -moz-appearance: none;
   margin: 0;
 }
 
 .logo {
   text-align: center;
   font-weight: 600;
-  font-size: 60px;
+  font-size: 50px;
   background-color: #1f2f61;
-  padding: 15px;
+  padding: 10px;
   font-family: Poppins, Helvetica;
   color: #486ee0;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
@@ -187,7 +188,6 @@ li {
 .amount {
   float: right;
   text-align: right;
-  font-family: "britannic-bold-regular", sans-serif;
 }
 
 .date {
@@ -325,7 +325,7 @@ li {
   color: #fff;
   font-size: 20px;
   cursor: pointer;
-  font-family: "britannic-bold-regular", sans-serif;
+  font-family: Poppins, sans-serif;
 }
 
 .view-history {
@@ -338,7 +338,7 @@ li {
   color: #fff;
   font-size: 20px;
   cursor: pointer;
-  font-family: "britannic-bold-regular", sans-serif;
+  font-family: Poppins, sans-serif;
 }
 
 .add-transaction:hover, .view-history:hover {

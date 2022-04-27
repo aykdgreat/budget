@@ -9,6 +9,7 @@ if (!$conn) {
 
 # GLOBALS
 $error = $tr_amount = $tr_title = $tr_date = $tr_type = $tr_option = $hist_month = $hist_order = "";
+$total_income = $total_balance = $total_expense = 0;
 $today = date("Y-m-d", strtotime("today"));
 $yesterday = date("Y-m-d", strtotime("yesterday"));
 $month = date("F", strtotime("today"));
@@ -18,7 +19,17 @@ $read_all = "SELECT * FROM b_tracker";
 $result = mysqli_query($conn, $read_all);
 if (mysqli_num_rows($result) > 0) {
   $tr_all = mysqli_fetch_all($result, MYSQLI_ASSOC);
-  // print_r($tr_all);
+  //print_r($tr_all);
+  $counter = 0;
+  foreach ($tr_all as $tr) {
+    //var_dump((int)$tr['amount_']);
+    if($tr['type_'] == 'income') {
+      $total_income += (int)$tr['amount_'];
+    } elseif ($tr['type_'] == 'expense') {
+      $total_expense += (int)$tr['amount_'];
+    }
+  }
+      $total_balance = $total_income - $total_expense;
 }
 
 # TODAY TR
@@ -82,7 +93,7 @@ if (isset($_POST['view-history'])) {
   $result = mysqli_query($conn, $read_history);
   if (mysqli_num_rows($result) > 0) {
     $tr_history = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    print_r($tr_history);
+    //print_r($tr_history);
     // echo count($tr_history);
   }
 }
@@ -113,16 +124,16 @@ if (isset($_POST['view-history'])) {
     <div class="card-group">
       <div class="card bal">
         <h4>Total Balance</h4>
-        <p># 4000</p>
+        <p># <?php echo $total_balance; ?></p>
       </div>
       <div class="card-group-inner-grid">
         <div class="card inc">
           <h4>Total Income <i class="la la-arrow-alt-circle-down"></i></h4>
-          <p># 9000</p>
+          <p># <?php echo $total_income; ?></p>
         </div>
         <div class="card exp">
           <h4>Total Expense <i class="la la-arrow-alt-circle-up"></i></h4>
-          <p># 5000</p>
+          <p># <?php echo $total_expense; ?></p>
         </div>
       </div>
     </div>
@@ -153,22 +164,23 @@ if (isset($_POST['view-history'])) {
         </div>
 
         <div class="filter">
-          <form method="post" name="history" class="card-group-inner-grid-three">
+          <form method="post" name="history" id="history" class="card-group-inner-grid-three">
             <div class="hundred">
               <label for="hist-month">Month: </label>
               <select name="hist-month" class="input-field select">
-                <option value="January" <?php if ($month == "January") echo "selected" ?>>January</option>
-                <option value="February" <?php if ($month == "February") echo "selected" ?>>February</option>
-                <option value="March" <?php if ($month == "March") echo "selected" ?>>March</option>
-                <option value="April" <?php if ($month == "April") echo "selected" ?>>April</option>
-                <option value="May" <?php if ($month == "May") echo "selected" ?>>May</option>
-                <option value="June" <?php if ($month == "June") echo "selected" ?>>June</option>
-                <option value="July" <?php if ($month == "July") echo "selected" ?>>July</option>
-                <option value="August" <?php if ($month == "August") echo "selected" ?>>August</option>
-                <option value="September" <?php if ($month == "September") echo "selected" ?>>September</option>
-                <option value="October" <?php if ($month == "October") echo "selected" ?>>October</option>
-                <option value="November" <?php if ($month == "November") echo "selected" ?>>November</option>
-                <option value="December" <?php if ($month == "December") echo "selected" ?>>December</option>
+                <option value="" <?php if ($hist_month == "") echo "selected" ?>>Select</option>
+                <option value="January" <?php if ($hist_month == "January") echo "selected" ?>>January</option>
+                <option value="February" <?php if ($hist_month == "February") echo "selected" ?>>February</option>
+                <option value="March" <?php if ($hist_month == "March") echo "selected" ?>>March</option>
+                <option value="April" <?php if ($hist_month == "April") echo "selected" ?>>April</option>
+                <option value="May" <?php if ($hist_month == "May") echo "selected" ?>>May</option>
+                <option value="June" <?php if ($hist_month == "June") echo "selected" ?>>June</option>
+                <option value="July" <?php if ($hist_month == "July") echo "selected" ?>>July</option>
+                <option value="August" <?php if ($hist_month == "August") echo "selected" ?>>August</option>
+                <option value="September" <?php if ($hist_month == "September") echo "selected" ?>>September</option>
+                <option value="October" <?php if ($hist_month == "October") echo "selected" ?>>October</option>
+                <option value="November" <?php if ($hist_month == "November") echo "selected" ?>>November</option>
+                <option value="December" <?php if ($hist_month == "December") echo "selected" ?>>December</option>
               </select>
             </div>
             <div class="hundred">
@@ -179,7 +191,7 @@ if (isset($_POST['view-history'])) {
               </select>
             </div>
             <div class="hundred">
-              <input type="submit" value="View" class="view-history" name="view-history">
+              <input type="submit" value="View" class="view-history" name="view-history" id="view-history">
             </div>
           </form>
         </div>

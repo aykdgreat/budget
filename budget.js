@@ -19,10 +19,12 @@ histTab.addEventListener("click", function showOthers() {
   incTab.classList.add("hide");
   histTab.classList.remove("hide");
   histTab.classList.add("active");
-
+  
   history.classList.remove("inactive");
   recent.classList.add("inactive");
   income.classList.add("inactive");
+  
+  document.querySelector('#view-history').click();
 });
 incTab.addEventListener("click", function showOthers() {
   recentTab.classList.remove("active");
@@ -76,12 +78,7 @@ document.addEventListener("dblclick", function toggleModalClose(e) {
   }
 });
 
-errorDiv = document.querySelector("#error-div")
+errorDiv = document.querySelector("#error-div");
 if(errorDiv.firstElementChild.id) {
-  openModal()
+  openModal();
 }
-
-// trying to clear the form after a submission
-// let form = document.querySelectorAll(".input-form")[0]
-// console.log(form);
-// form.reset()
