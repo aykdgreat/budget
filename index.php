@@ -214,10 +214,10 @@ if (isset($_POST['add-transaction'])) {
               if ($tr['date_'] == $today):
               ?>
             <li class="card-small clearfix">
-              <div>
-                <span class="title">0. <?php echo $tr['title_']; ?> <i class="las la-hashtag"></i></span>
-                <span class="amount"># <?php echo $tr['amount_']; ?></span>
-              </div>
+            <div>
+              <span class="title">1. <?php echo $tr['title_']; ?> <i class="las la-<?php echo $tr['option_'] == 'cash' ? 'hashtag' : 'credit-card';?>"></i></span>
+              <span class="amount <?php echo $tr['type_'] == 'income' ? 'i-type_' : 'e-type_'; ?>"># <?php echo $tr['amount_']; ?></span>
+            </div>
             </li>
             <?php endif; ?>
             <?php endforeach; ?>
@@ -239,7 +239,7 @@ if (isset($_POST['add-transaction'])) {
             <li class="card-small clearfix">
               <div>
               <span class="title">1. <?php echo $tr['title_']; ?> <i class="las la-<?php echo $tr['option_'] == 'cash' ? 'hashtag' : 'credit-card';?>"></i></span>
-              <span class="<?php echo $tr['type_'] == 'income' ? 'i-type_' : 'e-type_'; ?>"># <?php echo $tr['amount_']; ?></span>
+              <span class="amount <?php echo $tr['type_'] == 'income' ? 'i-type_' : 'e-type_'; ?>"># <?php echo $tr['amount_']; ?></span>
             </div>
           </li>
           <?php endif; ?>

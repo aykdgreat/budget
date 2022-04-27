@@ -87,10 +87,16 @@ input::-webkit-inner-spin-button {
   color: #1add7b;
 }
 
+
 .exp p, .e-type_ {
   font-size: 16px;
   font-weight: 600;
   color: #cc1212;
+}
+
+.i-type_, .e-type_ {
+  font-size: 15px;
+  font-weight: normal;
 }
 
 .bal h4,
