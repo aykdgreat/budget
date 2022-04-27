@@ -3,8 +3,8 @@
 $conn = mysqli_connect("127.0.0.1", "root", "", "budget");
 
 # CONNECTION
-if(!$conn) {
-  die("Connection error:". mysqli_connect_error());
+if (!$conn) {
+  die("Connection error:" . mysqli_connect_error());
 }
 
 # GLOBALS
@@ -49,13 +49,13 @@ if (isset($_POST['add-transaction'])) {
     if (!(str_word_count($tr_title) > 40)) {
       $tr_title = mysqli_real_escape_string($conn, $tr_title);
       $tr_amount = mysqli_real_escape_string($conn, $tr_amount);
-  
+
       $create = "INSERT INTO b_tracker (title_, amount_, type_, date_, option_) VALUES('$tr_title', '$tr_amount', '$tr_type', '$tr_date', '$tr_option')";
       $query = mysqli_query($conn, $create);
-      if($query) {
+      if ($query) {
         header("location: index.php?insert=success");
       } else {
-        die("Error:". mysqli_error($conn));
+        die("Error:" . mysqli_error($conn));
       }
     } else {
       $error = "<span id='error-msg'>Title longer than 40</span>";
@@ -74,6 +74,11 @@ if (mysqli_num_rows($result) > 0) {
   echo count($tr_history);
 }
 
+if (isset($_GET['view-history'])) {
+  $hist_month = $_GET['hist-month'];
+  $hist_order = $_GET['hist-order'];
+  echo 'get history orderby';
+}
 ?>
 
 <!DOCTYPE html>
@@ -143,45 +148,45 @@ if (mysqli_num_rows($result) > 0) {
         <div class="filter">
           <form method="get" name="history" class="card-group-inner-grid-three">
             <div class="hundred">
-              <label for="month">Month: </label>
-              <select name="month" class="input-field select">
-                <option value="January" <?php if ($month == "January") echo "selected"?>>January</option>
-                <option value="February" <?php if ($month == "February") echo "selected"?>>February</option>
-                <option value="March" <?php if ($month == "March") echo "selected"?>>March</option>
-                <option value="April" <?php if ($month == "April") echo "selected"?>>April</option>
-                <option value="May" <?php if ($month == "May") echo "selected"?>>May</option>
-                <option value="June" <?php if ($month == "June") echo "selected"?>>June</option>
-                <option value="July" <?php if ($month == "July") echo "selected"?>>July</option>
-                <option value="August" <?php if ($month == "August") echo "selected"?>>August</option>
-                <option value="September" <?php if ($month == "September") echo "selected"?>>September</option>
-                <option value="October" <?php if ($month == "October") echo "selected"?>>October</option>
-                <option value="November" <?php if ($month == "November") echo "selected"?>>November</option>
-                <option value="December" <?php if ($month == "December") echo "selected"?>>December</option>
+              <label for="hist-month">Month: </label>
+              <select name="hist-month" class="input-field select">
+                <option value="January" <?php if ($month == "January") echo "selected" ?>>January</option>
+                <option value="February" <?php if ($month == "February") echo "selected" ?>>February</option>
+                <option value="March" <?php if ($month == "March") echo "selected" ?>>March</option>
+                <option value="April" <?php if ($month == "April") echo "selected" ?>>April</option>
+                <option value="May" <?php if ($month == "May") echo "selected" ?>>May</option>
+                <option value="June" <?php if ($month == "June") echo "selected" ?>>June</option>
+                <option value="July" <?php if ($month == "July") echo "selected" ?>>July</option>
+                <option value="August" <?php if ($month == "August") echo "selected" ?>>August</option>
+                <option value="September" <?php if ($month == "September") echo "selected" ?>>September</option>
+                <option value="October" <?php if ($month == "October") echo "selected" ?>>October</option>
+                <option value="November" <?php if ($month == "November") echo "selected" ?>>November</option>
+                <option value="December" <?php if ($month == "December") echo "selected" ?>>December</option>
               </select>
             </div>
             <div class="hundred">
-              <label for="order">Order: </label>
-              <select name="order" class="input-field select">
+              <label for="hist-order">Order: </label>
+              <select name="hist-order" class="input-field select">
                 <option value="ASC">Ascending</option>
                 <option value="DESC">Descending</option>
               </select>
             </div>
             <div class="hundred">
-              <input type="submit" value="View" class="view-history">
+              <input type="submit" value="View" class="view-history" name="view-history">
             </div>
           </form>
         </div>
 
         <?php if (!empty($tr_history)) : ?>
           <ul class="list">
-          <?php foreach ($tr_history as $tr): ?>
-            <span class="date"><?php echo $tr['date_']; ?></span>
-            <li class="card-small clearfix">
-            <div>
-              <span class="title">1. <?php echo $tr['title_']; ?> <i class="las la-<?php echo $tr['option_'] == 'cash' ? 'hashtag' : 'credit-card';?>"></i></span>
-              <span class="amount <?php echo $tr['type_'] == 'income' ? 'i-type_' : 'e-type_'; ?>"># <?php echo $tr['amount_']; ?></span>
-            </div>
-            </li>
+            <?php foreach ($tr_history as $tr) : ?>
+              <span class="date"><?php echo $tr['date_']; ?></span>
+              <li class="card-small clearfix">
+                <div>
+                  <span class="title">1. <?php echo $tr['title_']; ?> <i class="las la-<?php echo $tr['option_'] == 'cash' ? 'hashtag' : 'credit-card'; ?>"></i></span>
+                  <span class="amount <?php echo $tr['type_'] == 'income' ? 'i-type_' : 'e-type_'; ?>"># <?php echo $tr['amount_']; ?></span>
+                </div>
+              </li>
             <?php endforeach; ?>
           </ul>
         <?php else : ?>
@@ -197,16 +202,16 @@ if (mysqli_num_rows($result) > 0) {
         <span class="date">Today - <?php echo $today ?></span>
         <?php if (!empty($tr_today)) : ?>
           <ul class="list">
-            <?php foreach ($tr_today as $tr): 
-              if ($tr['date_'] == $today):
-              ?>
-            <li class="card-small clearfix">
-            <div>
-              <span class="title">1. <?php echo $tr['title_']; ?> <i class="las la-<?php echo $tr['option_'] == 'cash' ? 'hashtag' : 'credit-card';?>"></i></span>
-              <span class="amount <?php echo $tr['type_'] == 'income' ? 'i-type_' : 'e-type_'; ?>"># <?php echo $tr['amount_']; ?></span>
-            </div>
-            </li>
-            <?php endif; ?>
+            <?php foreach ($tr_today as $tr) :
+              if ($tr['date_'] == $today) :
+            ?>
+                <li class="card-small clearfix">
+                  <div>
+                    <span class="title">1. <?php echo $tr['title_']; ?> <i class="las la-<?php echo $tr['option_'] == 'cash' ? 'hashtag' : 'credit-card'; ?>"></i></span>
+                    <span class="amount <?php echo $tr['type_'] == 'income' ? 'i-type_' : 'e-type_'; ?>"># <?php echo $tr['amount_']; ?></span>
+                  </div>
+                </li>
+              <?php endif; ?>
             <?php endforeach; ?>
           </ul>
         <?php else : ?>
@@ -215,31 +220,31 @@ if (mysqli_num_rows($result) > 0) {
               Nothing for today!
             </li>
           </ul>
-          <?php endif; ?>
-          
+        <?php endif; ?>
+
         <span class="date">Yesterday - <?php echo $yesterday; ?></span>
         <?php if (!empty($tr_yesterday)) : ?>
           <ul class="list">
-            <?php foreach ($tr_yesterday as $tr): 
-              if ($tr['date_'] == $yesterday):
-                ?>
-            <li class="card-small clearfix">
-              <div>
-              <span class="title">1. <?php echo $tr['title_']; ?> <i class="las la-<?php echo $tr['option_'] == 'cash' ? 'hashtag' : 'credit-card';?>"></i></span>
-              <span class="amount <?php echo $tr['type_'] == 'income' ? 'i-type_' : 'e-type_'; ?>"># <?php echo $tr['amount_']; ?></span>
-            </div>
-          </li>
-          <?php endif; ?>
-          <?php endforeach; ?>
-        </ul>
+            <?php foreach ($tr_yesterday as $tr) :
+              if ($tr['date_'] == $yesterday) :
+            ?>
+                <li class="card-small clearfix">
+                  <div>
+                    <span class="title">1. <?php echo $tr['title_']; ?> <i class="las la-<?php echo $tr['option_'] == 'cash' ? 'hashtag' : 'credit-card'; ?>"></i></span>
+                    <span class="amount <?php echo $tr['type_'] == 'income' ? 'i-type_' : 'e-type_'; ?>"># <?php echo $tr['amount_']; ?></span>
+                  </div>
+                </li>
+              <?php endif; ?>
+            <?php endforeach; ?>
+          </ul>
         <?php else : ?>
           <ul class="list">
             <li class="card-small clearfix">
               Nothing recorded yesterday!
             </li>
           </ul>
-          <?php endif; ?>
-          
+        <?php endif; ?>
+
       </div>
 
       <div class="inc-list inactive">
@@ -249,13 +254,13 @@ if (mysqli_num_rows($result) > 0) {
         </ul>
       </div>
     </div>
-    
+
     <div class="form" id="modal">
       <div class="close-modal" onclick="closeModal()">&times;</div>
       <form method="post" class="input-form" autocomplete="off">
         <h2 style="text-align: center; margin-bottom:5px;">New Transaction</h1>
           <div class="error" id="error-div">
-            <?php echo $error."<br>"; ?>
+            <?php echo $error . "<br>"; ?>
           </div>
           <table>
             <tr>
